@@ -1,0 +1,11 @@
+[Chengdu]
+
+yuhui=18615761805;
+chenjie=18228029575;
+mingkailing=13541067092;
+maorunsheng=15902818862;
+zhuke=18608005704;
+chenjinrui=13880663304;
+xuhuanchun=15982007548;
+guoweiwei=18602875770;
+zhaoxiaomin=13881764165;
