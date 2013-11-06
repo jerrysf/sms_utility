@@ -26,8 +26,8 @@ if len(sys.argv) < 3:
   build_number = ''
 else:
   build_number = sys.argv[2]
-print (job_name)  
-print (build_number)
+print ("job name & build number is: ")
+print (job_name + " " + str(build_number))
 
 #Define contact list and phone number
 bm_contact = config.get('Chengdu', 'yuhui') + config.get('Chengdu', 'chenjie')
