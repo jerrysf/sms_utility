@@ -1,11 +1,9 @@
-import sms_service.py
+import sms_service
 
 content = "first try"
 
 phone = "18080115634"
 
-sms_client = sms_service.py(content,phone)
+sms_client = sms_service.sms_service(content,phone)
 
 result = sms_client.send()
-
-print (result)
