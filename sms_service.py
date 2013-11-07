@@ -18,21 +18,25 @@ class sms_service:
 
         self.request = { 'usr' : 'rpci',
             'pwd' : 'rpscm',
-            'tel' : phone,
-            'msg' : content
+            'tel' : '',
+            'msg' : ''
            }
 
+        self.request['tel']=phone
+        self.request['msg']=content
+        
         self.query=self.api + urllib.parse.urlencode(self.request)
 
-        self.proxy = urllib.request.ProxyHandler({'http': 'http://fiesprx003.nsn-net.net:8080'})  
+         
 
         #self.query=query_gen()
         
     def send(self):
         
-        opener = urllib.request.build_opener(self.proxy)
+        proxy = urllib.request.ProxyHandler({'http': 'http://fiesprx003.nsn-net.net:8080'}) 
+        opener = urllib.request.build_opener(proxy)
         urllib.request.install_opener(opener)
         urllib.request.urlopen(self.query)
-        
+        print (self.query)
         print ("sms sent successfully")
 
