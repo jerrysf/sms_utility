@@ -1,3 +1,8 @@
+#Interface definition:
+#import sms_service
+#sms = sms_service(content, phone)
+#sms.send
+
 import os
 import sys
 import urllib
@@ -32,4 +37,6 @@ class sms_service:
         opener = urllib.request.build_opener(proxy)
         urllib.request.install_opener(opener)
         urllib.request.urlopen(query)
+        
+        print ("sms sent successfully")
 
