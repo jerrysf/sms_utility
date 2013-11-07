@@ -13,10 +13,9 @@ import urllib.request
 
 class sms_service:
       ''' class used for send sms message'''
-
-    def init(self, content, phone):
+      
+def init(self, content, phone):
         ''' generate http request based on input parameters'''
-        
         api = "http://www.smsgate.cn/gb.asp?"
         
         request = { 'usr' : 'rpci',
@@ -25,15 +24,15 @@ class sms_service:
             'msg' : content
            }
            
-        query=api + urllib.parse.urlencode(request) 
-
+        query=api + urllib.parse.urlencode(request)
+        
         proxy = urllib.request.ProxyHandler({'http': 'http://fiesprx003.nsn-net.net:8080'})  
-
-        query=query_gen()        
-    
-    def send(self):
+        
+        query=query_gen()
+        
+def send(self):
         ''' send this message '''
-    
+        
         opener = urllib.request.build_opener(proxy)
         urllib.request.install_opener(opener)
         urllib.request.urlopen(query)
