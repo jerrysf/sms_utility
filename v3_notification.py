@@ -14,18 +14,19 @@ import configparser
 import time
 import urllib.parse
 import urllib.request
-
-
-#Setup config parser
-config = configparser.RawConfigParser()
-config.read('phone_number.txt')
-
+             
 #Get job name and build number from upstream job
 job_name = sys.argv[1]
 if len(sys.argv) < 3:
   build_number = ''
 else:
-  build_number = sys.argv[2]
+  build_number = sys.argv[2] 
+  
+#Setup config parser
+config = configparser.RawConfigParser()
+config.read('phone_number.txt')
+
+
 print ("job name & build number is: ")
 print (job_name + " " + str(build_number))
 
@@ -36,15 +37,16 @@ rpbuild_contact = config.get('Chengdu', 'yuhui') + config.get('Chengdu', 'maorun
 rsync_contact = config.get('Chengdu', 'zhuke') + config.get('Chengdu', 'maorunsheng')
 test_contact = config.get('Chengdu', 'xuhuanchun') + config.get('Chengdu', 'zhaoxiaomin') + config.get('Chengdu', 'guoweiwei')
 prepare_contact = config.get('Chengdu', 'zhuke')
-
+  
+    
 api = "http://www.smsgate.cn/gb.asp?"
 
 request = { 'usr' : 'rpci',
-            'pwd' : 'rpscm',
-            'tel' : '18615761805',
-            'msg' : job_name + "_failed" + "@" + build_number
+              'pwd' : 'rpscm',
+              'tel' : '18615761805',
+              'msg' : job_name + "_failed" + "@" + build_number
            }
-
+   
 #Generate http query based on job name
 def query_gen():
   if "BM-PS" in job_name or "BMPS" in job_name:
@@ -71,10 +73,15 @@ def query_gen():
      
   return query
 
-query=query_gen()
 
-#Proxy is needed in this env.
-proxy = urllib.request.ProxyHandler({'http': 'http://fiesprx003.nsn-net.net:8080'})
-opener = urllib.request.build_opener(proxy)
-urllib.request.install_opener(opener)
-urllib.request.urlopen(query)
+
+def sms_sending():
+  #Proxy is needed in this env.
+  proxy = urllib.request.ProxyHandler({'http': 'http://fiesprx003.nsn-net.net:8080'})
+  opener = urllib.request.build_opener(proxy)
+  urllib.request.install_opener(opener)
+  urllib.request.urlopen(query)
+  
+if __name__=="__main__":             
+  query=query_gen()
+  sms_sending()
