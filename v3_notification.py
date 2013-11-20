@@ -83,5 +83,9 @@ def sms_sending():
   urllib.request.urlopen(query)
   
 if __name__=="__main__":             
-  query=query_gen()
-  sms_sending()
+  if time.localtime()[3] > 17:
+      print ("Too late in Chengdu, no SMS will be sent")
+      sys.exit(0)
+  else:
+      query=query_gen()
+      sms_sending()
